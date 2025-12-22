@@ -1,4 +1,4 @@
-﻿<!--
+<!--
 Copyright 2019 Hightech ICT and authors
 
 This file is part of DashDashVersion.
@@ -19,13 +19,13 @@ along with DashDashVersion. If not, see<https://www.gnu.org/licenses/>.
 
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.1;net6.0</TargetFrameworks>
+    <TargetFramework>net8</TargetFramework>
     <Title>DashDashVersion</Title>
     <Description>This libary can generate a version numbers for a git flow repository.</Description>
     <IsPackable>true</IsPackable>
     <Nullable>disable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="LibGit2Sharp" Version="0.27.0-preview-0096" />
+    <PackageReference Include="LibGit2Sharp" />
   </ItemGroup>
 </Project>

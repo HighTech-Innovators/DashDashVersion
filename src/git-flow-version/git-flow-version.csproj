@@ -1,4 +1,4 @@
-﻿<!--
+<!--
 Copyright 2019 Hightech ICT and authors
 
 This file is part of DashDashVersion.
@@ -20,7 +20,7 @@ along with DashDashVersion. If not, see<https://www.gnu.org/licenses/>.
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>netcoreapp3.1;net6.0</TargetFrameworks>
+    <TargetFramework>net8</TargetFramework>
     <Title>git-flow-version</Title>
     <Description>git-flow-version creates predictable and opinionated SemVer 2.0.0 version numbers for git flow repositories.</Description>
     <IsPackable>true</IsPackable>
@@ -36,8 +36,8 @@ along with DashDashVersion. If not, see<https://www.gnu.org/licenses/>.
   </ItemGroup>
     
   <ItemGroup>
-    <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="3.0.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="McMaster.Extensions.CommandLineUtils" />
+    <PackageReference Include="Newtonsoft.Json" />
   </ItemGroup>
 
   <ItemGroup>
