@@ -1,12 +1,10 @@
 # DashDashVersion
 
-[![Build Status](https://dev.azure.com/basbossink0470/DashDashVersion/_apis/build/status/hightechict.DashDashVersion?branchName=master)](https://dev.azure.com/basbossink0470/DashDashVersion/_build/latest?definitionId=1&branchName=master)
-[![Appveyor Build Status](https://ci.appveyor.com/api/projects/status/fgpb3nb7honnt4xh/branch/master?svg=true)](https://ci.appveyor.com/project/kees2125/dashdashversion)
-[![codecov](https://codecov.io/gh/hightechict/DashDashVersion/branch/master/graph/badge.svg)](https://codecov.io/gh/hightechict/DashDashVersion)
+[![GitHub Actions](https://github.com/HighTech-Innovators/DashDashVersion/workflows/Build%20and%20Test/badge.svg)](https://github.com/HighTech-Innovators/DashDashVersion/actions)
 [![nuget](https://img.shields.io/nuget/v/git-flow-version.svg?color=green)](https://www.nuget.org/packages/git-flow-version/)
-![licenceTag](https://img.shields.io/github/license/hightechict/DashDashVersion.svg?color=purple)
+![licenceTag](https://img.shields.io/github/license/HighTech-Innovators/DashDashVersion.svg?color=purple)
 [![docs](https://img.shields.io/badge/-docs-blue.svg)](https://www.dashdashversion.net/)
-[![docs](https://img.shields.io/badge/-repository-green.svg)](https://github.com/hightechict/DashDashVersion)
+[![docs](https://img.shields.io/badge/-repository-green.svg)](https://github.com/HighTech-Innovators/DashDashVersion)
 
 DashDashVersion creates predictable and opinionated [SemVer 2.0.0 version][SemVer2] numbers for [git flow][gitFlow] repositories.
 
@@ -14,7 +12,7 @@ It consists of an executable that can be installed as a [`dotnet` global tool][g
 
 ## Why DashDashVersion?
 
-DashDashVersion is an application to generate a version number for a git repository that follows [git-flow][gitFlow]. 
+DashDashVersion is an application to generate a version number for a git repository that follows [git-flow][gitFlow].
 Ideal if you are using [Continuous Integration](https://en.wikipedia.org/wiki/Continuous_integration).
 The version number can be used for packages or to simply tag your commits.
 
@@ -26,13 +24,13 @@ It complies with [SemVer 2.0][SemVer2]. DashDashVersion only supports repositori
 DashDashVersion can be installed as a [`dotnet` global tool][globalTool] by using the following command:
 
 ```bash
-$ dotnet tool install --global git-flow-version
+dotnet tool install --global git-flow-version
 ```
 
 or the library part can be added as a package using:
 
 ```bash
-$ dotnet add package DashDashVersion
+dotnet add package DashDashVersion
 ```
 
 ## Usage
@@ -60,7 +58,7 @@ $ git-flow-version
 If your Continuous Integration (CI) environment uses [detached heads](https://git-scm.com/docs/git-checkout#_detached_head) `git-flow-version` cannot determine what the _type_ (`master`, `release/*`, `feature/`, `hotfix/`, `support/*`) of the branch is for which it should generate the version number. In these cases the branch name can be specified via a command-line parameter:
 
 ```bash
-$ git-flow-version --branch develop
+git-flow-version --branch develop
 ```
 
 Matching of the branch name is performed using the following strategy:
@@ -79,9 +77,9 @@ The number of command-line parameters and/or options supported by `git-flow-vers
 To show the help information, use any of the following command-line switches:
 
 ```bash
-$ git-flow-version -?
-$ git-flow-version -h
-$ git-flow-version --help
+git-flow-version -?
+git-flow-version -h
+git-flow-version --help
 ```
 
 #### Setting the branch name
@@ -89,8 +87,8 @@ $ git-flow-version --help
 To use the branch in the repository with the name that matches the supplied value to determine the _type_ of the branch, add either the `‑b` or the `‑‑branch` command-line parameter followed by the name of the branch.
 
 ```bash
-$ git-flow-version -b develop
-$ git-flow-version --branch feature/issue-1234-improve-error-handling
+git-flow-version -b develop
+git-flow-version --branch feature/issue-1234-improve-error-handling
 ```
 
 #### Version information
@@ -98,8 +96,8 @@ $ git-flow-version --branch feature/issue-1234-improve-error-handling
 To list the version of `git‑flow‑version` use either the `‑v` or `‑‑version` command-line switches.
 
 ```bash
-$ git-flow-version -v
-$ git-flow-version --version
+git-flow-version -v
+git-flow-version --version
 ```
 
 ## Requirements
@@ -116,7 +114,7 @@ DashDashVersion only supports repositories that strictly follow the [git flow][g
 
 this may seem overly restrictive but we believe strongly in simplicity and convention over configuration.
 
-#### Bootstrap requirements
+### Bootstrap requirements
 
 * A tag on `master` with a [SemVer 2.0.0][SemVer2] compliant name for the latest release, without a pre-release label and without build metadata, if not it will assume 0.0.0 as the current version at the first commit on the repository and count from there.
 * On any active `release/` or `hotfix/` branch add a tag using the  `<major>.<minor>.<patch>-rc.<number>` format if having consecutive `rc` versions is required.
@@ -140,9 +138,10 @@ For example if there are 3 commits on `develop` and the last tag on `master` is 
 After performing:
 
 ```bash
-$ git flow release start 0.1.0
-$ git flow release finish
+git flow release start 0.1.0
+git flow release finish
 ```
+
 the output of `git-flow-version` will be:
 
 ```bash
@@ -153,19 +152,20 @@ $ git-flow-version
     "SemVer":"0.2.0-dev.1"
 }
 ```
+
 ### On a `feature/` branch
 
 For a feature branch a version number will be calculated for the branch-off point from `origin/develop` or `develop` if there is no `origin/develop`. The number of commits on the feature branch is counted and these pieces are glued together.
 For example with a feature named `featureA` with 5 commits since branching from `origin/develop` with version number `0.1.0-dev.12` the calculated version number would be `0.1.0-dev.12.featureA.5`.
 If a second feature is started from the `feature/featureA` branch named `featureB` the number of commits since branching from `origin/develop` will be used, so the version number would be `0.1.0-dev.12-featureB.6`, if only a single commit is made on branch `featureB`.  
-![feature branch](https://raw.githubusercontent.com/hightechict/DashDashVersion/develop/doc/images/feature.svg?sanitize=true)
+![feature branch](https://raw.githubusercontent.com/HighTech-Innovators/DashDashVersion/develop/doc/images/feature.svg?sanitize=true)
 
 ### On a `release/` branch
 
 Release candidates use a simple `+1` strategy, if the `release/0.2.0` branch has just been created and has no commits yet, the version number will be `0.2.0-rc.1`.
 If there exists a tag on the release branch that has the form `0.2.0-rc.<a=highest rc number>` the calculated version number will be `0.2.0-rc.<a+1>`.
 So if the last tag was `0.2.0-rc.4` the next version number would be `0.2.0-rc.5`.  
-![release branch](https://raw.githubusercontent.com/hightechict/DashDashVersion/develop/doc/images/release.svg?sanitize=true)
+![release branch](https://raw.githubusercontent.com/HighTech-Innovators/DashDashVersion/develop/doc/images/release.svg?sanitize=true)
 
 ### On `master`, `main` or a `support/` branch
 
@@ -182,11 +182,11 @@ This work is licensed under the LGPL license, refer to the [COPYING.md][license]
 
 ## Repository
 
-The source code of this project can be found on [github](https://github.com/hightechict/DashDashVersion).
+The source code of this project can be found on [github](https://github.com/HighTech-Innovators/DashDashVersion).
 
-[license]: https://raw.githubusercontent.com/hightechict/DashDashVersion/develop/COPYING
-[licenseExtension]: https://raw.githubusercontent.com/hightechict/DashDashVersion/develop/COPYING.LESSER
+[license]: https://raw.githubusercontent.com/HighTech-Innovators/DashDashVersion/develop/COPYING
+[licenseExtension]: https://raw.githubusercontent.com/HighTech-Innovators/DashDashVersion/develop/COPYING.LESSER
 [SemVer2]: https://semver.org/
 [gitFlow]: https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
 [globalTool]: https://docs.microsoft.com/en-us/dotnet/core/tools/global-tools
-[contribute]: https://github.com/hightechict/DashDashVersion/blob/develop/CONTRIBUTING.md
+[contribute]: https://github.com/HighTech-Innovators/DashDashVersion/blob/develop/CONTRIBUTING.md
