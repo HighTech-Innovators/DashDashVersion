@@ -72,7 +72,7 @@ jobs:
         dotnet pack ./src/git-flow-version/git-flow-version.csproj --output ./built --configuration Release /p:Version=${{ env.FULLSEMVER }}
 
     - name: Tag release
-      if: github.event_name == 'push' && !contains(github.ref, '/merge') && github.ref != 'refs/heads/develop'
+      if: github.event_name == 'push'
       run: |
         git config --global user.email "github-actions@noreply.github.com"
         git config --global user.name "github-actions"
