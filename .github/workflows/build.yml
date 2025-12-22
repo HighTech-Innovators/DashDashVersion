@@ -24,7 +24,7 @@ jobs:
         dotnet-version: '8.x'
 
     - name: Install git-flow-version tool
-      run: dotnet tool install --global git-flow-version
+      run: dotnet tool install --global --prerelease git-flow-version
 
     - name: Install coverlet
       run: dotnet tool install --global coverlet.console
