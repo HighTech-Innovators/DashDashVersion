@@ -38,6 +38,7 @@ namespace DashDashVersionTests
         {
             var branch = BranchInfoFactory.CreateBranchInfo(name);
             branch.Name.Should().Be(name);
+            Patterns.DetermineBranchType.IsMatch(name).Should().BeTrue();
         }
 
         [Theory]

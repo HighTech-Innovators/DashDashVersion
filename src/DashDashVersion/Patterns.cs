@@ -33,7 +33,7 @@ namespace DashDashVersion
         internal static readonly Regex ValidVersionNumber = new Regex(
             @"^(?<Major>\d+)\.(?<Minor>\d+)\.(?<Patch>\d+)(-((?<CoreDebugLabel>\.?debug\.(?<Major2>\d+)\.(?<Minor2>\d+)\.(?<Patch2>\d+))|(?<PreReleaseLabel>(?<PreReleaseLabelBase>[a-zA-Z0-9-]+\.\d+)(\.(?<PreReleaseLabelFeature>[a-zA-Z0-9-]+\.\d+))?)?(?<PreDebugLabel>\.debug)?))?(\+(?<BuildMetadata>[a-zA-Z0-9-]+))?$", RegexOptions.Compiled);
 
-        internal static readonly Regex DetermineBranchType = new Regex(@$"\b(\/)?(?<branchType>({Constants.MasterBranchName}|{Constants.DevelopBranchName}|{Constants.FeatureBranchName}|{Constants.ReleaseBranchName}|{Constants.SupportBranchName}|{Constants.HotfixBranchName}|{Constants.BugFixBranchName}))\b(\/)?", RegexOptions.Compiled);
+        internal static readonly Regex DetermineBranchType = new Regex(@$"\b(\/)?(?<branchType>({Constants.MasterBranchName}|{Constants.MainBranchName}|{Constants.DevelopBranchName}|{Constants.FeatureBranchName}|{Constants.ReleaseBranchName}|{Constants.SupportBranchName}|{Constants.HotfixBranchName}|{Constants.BugFixBranchName}))\b(\/)?", RegexOptions.Compiled);
     }
 
 }

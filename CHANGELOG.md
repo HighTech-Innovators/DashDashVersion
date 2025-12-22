@@ -11,7 +11,9 @@ Change log entries should be formulated in the imperative present tense.
 
 # Changelog
 
-## [Unreleased]
+## [0.17.0]
+
+* updated to .NET 6.0, also still supporting .NET Core 3.1
 
 ## [0.16.5]
 

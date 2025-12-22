@@ -167,7 +167,7 @@ If there exists a tag on the release branch that has the form `0.2.0-rc.<a=highe
 So if the last tag was `0.2.0-rc.4` the next version number would be `0.2.0-rc.5`.  
 ![release branch](https://raw.githubusercontent.com/HighTech-Innovators/DashDashVersion/develop/doc/images/release.svg?sanitize=true)
 
-### On `master`, `main` or `support`
+### On `master`, `main` or a `support/` branch
 
 The version number of the tag on `HEAD` will be returned if it can be found and parsed otherwise an error is generated.
 
