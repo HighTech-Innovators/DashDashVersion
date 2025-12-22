@@ -1,4 +1,4 @@
-﻿<!--
+<!--
 Copyright 2019 Hightech ICT and authors
 
 This file is part of DashDashVersion.
@@ -26,6 +26,6 @@ along with DashDashVersion. If not, see<https://www.gnu.org/licenses/>.
     <Nullable>disable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="LibGit2Sharp" Version="0.31.0" />
+    <PackageReference Include="LibGit2Sharp" />
   </ItemGroup>
 </Project>
