@@ -67,7 +67,9 @@ jobs:
 
     - name: Create NuGet packages
       if: github.event_name == 'push' && !contains(github.ref, '/merge')
-      run: dotnet pack ./src/*/*.csproj --output ./built --configuration Release /p:Version=${{ env.FULLSEMVER }}
+      run: |
+        dotnet pack ./src/DashDashVersion/DashDashVersion.csproj --output ./built --configuration Release /p:Version=${{ env.FULLSEMVER }}
+        dotnet pack ./src/git-flow-version/git-flow-version.csproj --output ./built --configuration Release /p:Version=${{ env.FULLSEMVER }}
 
     - name: Tag release
       if: github.event_name == 'push' && !contains(github.ref, '/merge') && github.ref != 'refs/heads/develop'
