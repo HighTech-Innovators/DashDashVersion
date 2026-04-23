@@ -6,16 +6,16 @@
 # All paths in rules.load are relative to the repo root.
 
 project:
-  name: "example-mobile-app"
-  type: react-native
-  stacks: [react-native]
-  # domain: payments   # set when a domain terminology set applies
+  name: "DashDashVersion"
+  type: dotnet
+  stacks: [dotnet]
+  # domain: versioning   # git-flow semantic versioning domain
 
 rules:
   load:
     - .ai/rules/global/*
-    - .ai/rules/stacks/react-native/*
-    # - .ai-local/rules/*   # enable once .ai-local/rules/ has content
+    - .ai/rules/stacks/dotnet/*
+    - .ai-local/rules/*   # enabled for project-specific rules
 
 personas:
   enabled: [architect, product-analyst, implementer]
