@@ -1,0 +1,1 @@
+../../../.ai/skills/design-tests/SKILL.md

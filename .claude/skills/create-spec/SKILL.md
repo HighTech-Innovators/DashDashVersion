@@ -1,0 +1,1 @@
+../../../.ai/skills/create-spec/SKILL.md

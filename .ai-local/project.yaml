@@ -1,0 +1,40 @@
+# Per-project manifest. Agents read this file first every session.
+# On install, this is copied to `.ai-local/project.yaml`.
+# Edit the copy for your project; this `.example` stays as the
+# scaffold reference.
+#
+# All paths in rules.load are relative to the repo root.
+
+project:
+  name: "example-mobile-app"
+  type: react-native
+  stacks: [react-native]
+  # domain: payments   # set when a domain terminology set applies
+
+rules:
+  load:
+    - .ai/rules/global/*
+    - .ai/rules/stacks/react-native/*
+    # - .ai-local/rules/*   # enable once .ai-local/rules/ has content
+
+personas:
+  enabled: [architect, product-analyst, implementer]
+  ownership:
+    architect:       [specs, decisions]
+    product-analyst: [briefs]
+    implementer:     [plans]
+  # Reviewer, tester, and security-reviewer come online in
+  # Stage 6. Do not list a persona whose file does not yet
+  # exist — agents will try to load it and fail.
+
+# terminology:
+#   load: [global]
+# Terminology files are introduced in a later stage. Uncomment
+# once `.ai/terminology/global.md` exists.
+
+paths:
+  briefs: docs/briefs
+  specs: docs/specs
+  plans: docs/plans
+  decisions: docs/decisions
+  index: docs/README.md
