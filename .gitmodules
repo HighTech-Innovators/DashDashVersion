@@ -1,0 +1,4 @@
+[submodule "dot-ai"]
+	path = .ai
+	url = https://github.com/HighTech-Innovators/dot-ai
+	branch = main

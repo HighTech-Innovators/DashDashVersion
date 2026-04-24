@@ -1,0 +1,1 @@
+../../../.ai/skills/resume-plan/SKILL.md

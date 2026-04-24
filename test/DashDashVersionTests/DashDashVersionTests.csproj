@@ -47,6 +47,7 @@ along with DashDashVersion. If not, see<https://www.gnu.org/licenses/>.
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\DashDashVersion\DashDashVersion.csproj" />
+    <ProjectReference Include="..\..\src\git-flow-version\git-flow-version.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,1 @@
+../../../.ai/skills/integrity-check/SKILL.md
