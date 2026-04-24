@@ -92,9 +92,22 @@ namespace DashDashVersionTests
         private static string CliDll()
         {
             var baseDir = AppContext.BaseDirectory;
+            // Extract the build configuration (e.g. "Debug", "Release") and TFM
+            // (e.g. "net8") from the test assembly's own output path so the CLI
+            // path stays valid regardless of the active build configuration.
+            var parts = baseDir
+                .TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar)
+                .Split(new[] { Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar });
+            var binIndex = Array.LastIndexOf(parts, "bin");
+            var configuration = binIndex >= 0 && binIndex + 1 < parts.Length
+                ? parts[binIndex + 1]
+                : "Debug";
+            var tfm = binIndex >= 0 && binIndex + 2 < parts.Length
+                ? parts[binIndex + 2]
+                : "net8";
             return Path.GetFullPath(Path.Combine(
                 baseDir, "..", "..", "..", "..", "..",
-                "src", "git-flow-version", "bin", "Debug", "net8",
+                "src", "git-flow-version", "bin", configuration, tfm,
                 "git-flow-version.dll"));
         }
 
