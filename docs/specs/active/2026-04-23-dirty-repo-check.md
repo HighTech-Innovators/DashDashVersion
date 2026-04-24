@@ -35,7 +35,7 @@ if(checkIfRepoIsClean && repo.RepoIsDirty)
     throw new InvalidDataException("...");
 ```
 
-The parameter name in `Program.cs` line 39 shows `optionForce`, and line 53 passes `optionForce.HasValue()` directly. The logic appears sound on first read, but must be validated with tests to confirm the actual behavior.
+The bug was in `Program.cs` line 53: `optionForce.HasValue()` was passed directly as `checkIfRepoIsClean`, inverting the semantics — `--force` enabled the check instead of disabling it. The fix passes `!optionForce.HasValue()` so that omitting `--force` enforces the check and supplying it bypasses it.
 
 ### 2. Testing Strategy
 
