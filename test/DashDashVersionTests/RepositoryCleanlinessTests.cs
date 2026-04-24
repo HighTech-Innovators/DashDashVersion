@@ -111,7 +111,7 @@ namespace DashDashVersionTests
                 "git-flow-version.dll"));
         }
 
-        private static int RunCli(string workingDir, params string[] args)
+        private static (int ExitCode, string Output) RunCli(string workingDir, params string[] args)
         {
             using var process = new Process
             {
@@ -126,8 +126,19 @@ namespace DashDashVersionTests
                 }
             };
             process.Start();
-            process.WaitForExit();
-            return process.ExitCode;
+            // Read streams concurrently to prevent buffer-full deadlocks.
+            var stdoutTask = process.StandardOutput.ReadToEndAsync();
+            var stderrTask = process.StandardError.ReadToEndAsync();
+            bool exited = process.WaitForExit(30_000);
+            if (!exited)
+            {
+                process.Kill();
+                process.WaitForExit();
+            }
+            var output = $"stdout: {stdoutTask.Result}\nstderr: {stderrTask.Result}";
+            if (!exited)
+                throw new TimeoutException($"CLI process did not exit within 30 seconds.\n{output}");
+            return (process.ExitCode, output);
         }
 
         private void CreateStagedChanges(string repoPath)
@@ -202,10 +213,10 @@ namespace DashDashVersionTests
             CreateUnstagedChanges(repoPath);
 
             // Act
-            var exitCode = RunCli(repoPath, "-b", "master");
+            var (exitCode, output) = RunCli(repoPath, "-b", "master");
 
             // Assert
-            exitCode.Should().NotBe(0);
+            exitCode.Should().NotBe(0, output);
         }
 
         [Fact]
@@ -216,10 +227,10 @@ namespace DashDashVersionTests
             CreateUnstagedChanges(repoPath);
 
             // Act
-            var exitCode = RunCli(repoPath, "-b", "master", "--force");
+            var (exitCode, output) = RunCli(repoPath, "-b", "master", "--force");
 
             // Assert
-            exitCode.Should().Be(0);
+            exitCode.Should().Be(0, output);
         }
     }
 }
