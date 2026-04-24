@@ -16,6 +16,7 @@
 // along with DashDashVersion. If not, see<https://www.gnu.org/licenses/>.
 
 using System;
+using System.Diagnostics;
 using System.IO;
 using Xunit;
 using FluentAssertions;
@@ -24,11 +25,6 @@ using LibGit2Sharp;
 
 namespace DashDashVersionTests
 {
-    /// <summary>
-    /// Integration tests for the dirty repository check feature.
-    /// These tests create real git repositories and verify that version generation
-    /// correctly rejects dirty repos without --force and accepts them with --force.
-    /// </summary>
     public class RepositoryCleanlinessTests : IDisposable
     {
         private readonly string _tempDir;
@@ -93,6 +89,34 @@ namespace DashDashVersionTests
             File.WriteAllText(testFile, "modified unstaged content");
         }
 
+        private static string CliDll()
+        {
+            var baseDir = AppContext.BaseDirectory;
+            return Path.GetFullPath(Path.Combine(
+                baseDir, "..", "..", "..", "..", "..",
+                "src", "git-flow-version", "bin", "Debug", "net8",
+                "git-flow-version.dll"));
+        }
+
+        private static int RunCli(string workingDir, params string[] args)
+        {
+            using var process = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = "dotnet",
+                    Arguments = $"\"{CliDll()}\" {string.Join(" ", args)}",
+                    WorkingDirectory = workingDir,
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true
+                }
+            };
+            process.Start();
+            process.WaitForExit();
+            return process.ExitCode;
+        }
+
         private void CreateStagedChanges(string repoPath)
         {
             using var repo = new Repository(repoPath);
@@ -149,19 +173,40 @@ namespace DashDashVersionTests
             CreateUnstagedChanges(repoPath);
             CreateStagedChanges(repoPath);
 
-            // Act
-            Action act = () => VersionNumberGenerator.GenerateVersionNumber(
-                repoPath,
-                "master",
-                checkIfRepoIsClean: false);  // force flag means don't check if clean
-
-            // Assert
-            act.Should().NotThrow();
+            // Act & Assert
             var version = VersionNumberGenerator.GenerateVersionNumber(
                 repoPath,
                 "master",
                 checkIfRepoIsClean: false);
             version.Should().NotBeNull();
+        }
+
+        [Fact]
+        public void When_cli_invoked_on_dirty_repo_without_force_Then_exits_nonzero()
+        {
+            // Arrange
+            var repoPath = CreateTestRepository("cli-dirty-repo");
+            CreateUnstagedChanges(repoPath);
+
+            // Act
+            var exitCode = RunCli(repoPath, "-b", "master");
+
+            // Assert
+            exitCode.Should().NotBe(0);
+        }
+
+        [Fact]
+        public void When_cli_invoked_on_dirty_repo_with_force_Then_exits_zero()
+        {
+            // Arrange
+            var repoPath = CreateTestRepository("cli-force-repo");
+            CreateUnstagedChanges(repoPath);
+
+            // Act
+            var exitCode = RunCli(repoPath, "-b", "master", "--force");
+
+            // Assert
+            exitCode.Should().Be(0);
         }
     }
 }

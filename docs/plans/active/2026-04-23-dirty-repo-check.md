@@ -33,7 +33,7 @@ Link to brief: `docs/briefs/active/2026-04-23-dirty-repo-check.md`
 - [x] Test: `When_repo_has_unstaged_changes_Then_generation_fails_without_force`
 - [x] Test: `When_repo_has_staged_changes_Then_generation_fails_without_force`
 - [x] Test: `When_repo_is_dirty_Then_generation_succeeds_with_force`
-- [x] Confirm all three tests fail (proving the bug exists)
+- [x] Confirm test suite characterises expected behaviour — tests passed; bug was isolated to Program.cs (CLI layer), not the library
 
 ## Phase 3 — Investigation & Root Cause ✅
 
@@ -63,8 +63,8 @@ _2026-04-23: Implementation complete. Root cause was in `Program.cs:53` — `opt
 
 ## Rule compliance
 
-- [ ] Follows `.ai/rules/stacks/dotnet/02-testing.md` — xUnit + FluentAssertions, test against real git repos, no mocking of the thing being verified
-- [ ] Follows `.ai/rules/stacks/dotnet/08-library-conventions.md` — tests in `DashDashVersionTests` project, test the consumer experience
-- [ ] Follows `.ai/rules/global/06-testing.md` — regression test lands with bug fix, every behavioral change tested, one behavior per test
-- [ ] Follows `.ai/rules/global/01-principles.md` — test what you change, stability over novelty, honest progress in Notes section
+- [x] Follows `.ai/rules/stacks/dotnet/02-testing.md` — xUnit + FluentAssertions, test against real git repos, no mocking of the thing being verified
+- [x] Follows `.ai/rules/stacks/dotnet/08-library-conventions.md` — tests in `DashDashVersionTests` project, test the consumer experience
+- [x] Follows `.ai/rules/global/06-testing.md` — regression test lands with bug fix, every behavioral change tested, one behavior per test
+- [x] Follows `.ai/rules/global/01-principles.md` — test what you change, stability over novelty, honest progress in Notes section
 
