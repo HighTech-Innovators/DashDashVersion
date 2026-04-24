@@ -6,8 +6,8 @@ created: 2026-04-23
 updated: 2026-04-23
 owner: implementer
 related:
-  brief: docs/briefs/active/2026-04-23-dirty-repo-check.md
-  spec: docs/specs/active/2026-04-23-dirty-repo-check.md
+  brief: docs/briefs/archive/2026-04-23-dirty-repo-check.md
+  spec: docs/specs/archive/2026-04-23-dirty-repo-check.md
   test_plan: null
 progress:
   total: 9
@@ -19,8 +19,8 @@ progress:
 
 ## Context
 
-Link to spec: `docs/specs/active/2026-04-23-dirty-repo-check.md`
-Link to brief: `docs/briefs/active/2026-04-23-dirty-repo-check.md`
+Link to spec: `docs/specs/archive/2026-04-23-dirty-repo-check.md`
+Link to brief: `docs/briefs/archive/2026-04-23-dirty-repo-check.md`
 
 ## Phase 1 — Diagnosis & Test Infrastructure ✅
 

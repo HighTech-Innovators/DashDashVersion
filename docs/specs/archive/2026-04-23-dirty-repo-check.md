@@ -6,8 +6,8 @@ created: 2026-04-23
 updated: 2026-04-23
 owner: architect
 related:
-  brief: docs/briefs/active/2026-04-23-dirty-repo-check.md
-  plan: docs/plans/active/2026-04-23-dirty-repo-check.md
+  brief: docs/briefs/archive/2026-04-23-dirty-repo-check.md
+  plan: docs/plans/archive/2026-04-23-dirty-repo-check.md
   decisions: []
 ---
 

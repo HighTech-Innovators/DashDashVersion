@@ -6,7 +6,7 @@ created: 2026-04-23
 updated: 2026-04-23
 owner: product-analyst
 related:
-  spec: docs/specs/active/2026-04-23-dirty-repo-check.md
+  spec: docs/specs/archive/2026-04-23-dirty-repo-check.md
   plan: null
 ---
 
